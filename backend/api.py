@@ -1,9 +1,9 @@
+import os
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 from pydantic import BaseModel, validator
 import yt_dlp
-import os
 import tempfile
 import re
 from urllib.parse import urlparse, parse_qs
@@ -12,12 +12,13 @@ import shutil
 
 app = FastAPI()
 
+# Railway CORS fix
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://192.168.*:3000", "http://172.*:3000", "http://10.*:3000"],
+    allow_origins=["*"],  # Allow all origins for Railway
     allow_credentials=True,
-    allow_methods=["POST"],
-    allow_headers=["Content-Type"],
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 temp_dirs = []
