@@ -25,6 +25,14 @@ class DownloadRequest(BaseModel):
     format_id: str
     type: str
 
+@app.get("/")
+async def root():
+    return {"status": "ok", "message": "YouTube Downloader API"}
+
+@app.get("/health")
+async def health():
+    return {"status": "healthy"}
+
 @app.post("/api/video-info")
 async def get_video_info(data: VideoURL):
     try:
