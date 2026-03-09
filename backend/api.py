@@ -39,6 +39,8 @@ async def get_video_info(data: VideoURL):
         ydl_opts = {
             "quiet": True,
             "no_warnings": True,
+            "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+            "extractor_args": {"youtube": {"player_client": ["android", "web"]}},
         }
         
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
@@ -89,6 +91,8 @@ async def download_video(data: DownloadRequest):
         ydl_opts = {
             "quiet": True,
             "outtmpl": os.path.join(temp_dir, "%(title)s.%(ext)s"),
+            "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+            "extractor_args": {"youtube": {"player_client": ["android", "web"]}},
         }
         
         if data.type == "audio_only":
